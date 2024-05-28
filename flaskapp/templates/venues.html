@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}PartyTime Venues{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="text-center">
+<img class="img-fluid" src="{{ url_for('static', filename='images/party_index.png') }}" style="width: 1000px;">
+<h1 class="display-4">PartyTime Venues</h1>
+    </div>
+    <!-- formatted as a table -->
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Contact Phone Number</th>
+            <th>Rental Fee</th>
+            <th>Maximum Attendees</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for venue in venues %}
+            <tr>
+                <td>{{ venue['name'] }}</td>
+                <td>{{ venue['address'] }}</td>
+                <td>{{ venue['phone'] }}</td>
+                <td>${{ venue['fee'] }}</td>
+                <td>{{ venue['attendees_capacity'] }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+<div class="d-flex justify-content-center">
+    <a href="{{ url_for('add_venues')}}" class="btn btn-primary">Add a Venue!</a>
+</div>
+{% endblock %}

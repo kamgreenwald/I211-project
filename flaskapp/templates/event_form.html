@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}Add an Event{% endblock %}
+
+{% block content %}
+<h1 class="mt-5">Create a new Event:</h1>
+<form method="post" name ="event_form">
+    <div class="mb-3">
+        <label for="name">Event Name:</label>
+        <!-- have to include the value with a jinja index in order for pre existing data to show up, and if theres none then its an empty string.-->
+        <input type="text" id="name" name="name" value="{{ event['name'] if event else '' }}" pattern=".*[a-zA-Z0-9'.;:!]+\s*[a-zA-Z0-9'.;:!]*.*" required>
+    </div>
+    <div class="mb-3">
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" value="{{ event['date'] if event else '' }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="venue_id">Venue:</label>
+        <select id="venue_id" name="venue_id" required>
+            {% for venue in venues %}
+                <option value="{{ venue['venue_id'] }}">{{ venue['name'] if venue else '' }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="start_time">Start Time:</label>
+        <input type="time" id="start_time" name="start_time" value="{{ event['start_time'] if event else '' }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="end_time">End Time:</label>
+        <input type="time" id="end_time" name="end_time" value="{{ event['end_time'] if event else '' }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="invitation">Invitation:</label>
+        <!-- have to include the value with a jinja index in order for pre existing data to show up, and if theres none then its an empty string. But have to put the jinja index between textarea tags rather than as a value.-->
+        <textarea class="form-control" id="invitation" name="invitation" rows="3" width="33" pattern=".*[a-zA-Z0-9'.;:!]+\s*[a-zA-Z0-9'.;:!]*.*" required>{{ event['invitation'] if event else '' }}
+        </textarea>
+    </div>
+    <div class="mb-3">
+        <label for="image_path">Image Path:</label>
+        <input type="text" id="image_path" name="image_path" value="{{ event['image_path'] if event else '' }}">
+    </div>
+    <div class="mb-3">
+        <label for="attendees">Max Attendees:</label>
+        <input type="number" id="attendees" name="attendees" value="{{ event['attendees'] if event else '' }}" minlength='1' maxlength='6' pattern='.*[0-9].*' required>
+    </div>
+    <!--DROP down select for planner-->
+    <div class="mb-3">
+        <label for="planner_id">Partytime Planner:</label>
+        <select id="planner_id" name="planner_id" required>
+            {% for planner in planners %}
+                <option value="{{ planner['planner_id'] }}">{{ planner['name'] if planner else '' }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <!--DROP down select for host-->
+    <div class="mb-3">
+        <label for="host_id">Event Host:</label>
+        <select id="host_id" name="host_id" required>
+            {% for host in hosts %}
+                <option value="{{ host['host_id'] }}">{{ host['name'] if host else '' }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="rental_items">Rental Items:</label>
+        <input type="text" id="rental_items" name="rental_items" value="{{ event['rental_items'] if event else '' }}" pattern=".*[a-zA-Z0-9'.;:!]+\s*[a-zA-Z0-9'.;:!]*.*" required>
+    </div>
+    <div class="mb-3">
+        <label for="notes">Notes:</label>
+        <textarea class="form-control" id="notes" name="notes" rows="3" width="33" pattern=".*[a-zA-Z0-9'.;:!]+\s*[a-zA-Z0-9'.;:!]*.*" required>{{ event['notes'] if event else '' }}
+        </textarea>
+    </div>
+
+    <button class='btn btn-primary' type="submit" value="submit">SAVE</button>
+    <button class='btn btn-secondary' type="reset" value="reset">RESET</button>
+</form>
+
+{% endblock %}

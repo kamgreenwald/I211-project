@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<h1 class="display-4">PartyTime Events!</h1>
+<div class="row">
+<p class="lead">Taking Your Party to the Next Level!</p>
+<img class="img-fluid" src="{{ url_for('static', filename='images/party_index.png') }}">
+<div class="d-flex">
+<a href="{{ url_for('show_events')}}" class="btn btn-primary flex-fill m-2">See Events</a>
+<a href="{{ url_for('show_venues')}}" class="btn btn-primary flex-fill m-2">See Venues</a>
+<a href="{{ url_for('show_people')}}" class="btn btn-primary flex-fill m-2">See People</a>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Add a Venue{% endblock %}
+
+{% block content %}
+<!-- Simple form same method as shown in class.-->
+<h1 class="mt-5">Add a New Venue:</h1>
+<form method="post" name ="venue_form">
+    <div class="mb-3">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+    </div>
+    <div class="mb-3">
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" pattern = "^[0-9]+ [a-zA-Z0-9\s,.-]+$" required>
+    </input>
+    </div>
+    <div class="mb-3">
+        <label for="phone">Phone:</label>
+        <input type="text" id="phone" name="phone" placeholder="Please enter in xxx-xxx-xxxx format" minlength='12' maxlength='12' pattern='.*[0-9-].*' required>
+    </div>
+    <div class="mb-3">
+        <label for="fee">Rental Fee:</label>
+        <input type="number" id="fee" name="fee" placeholder="Please enter numerical values only!" minlength='1' maxlength='6' pattern='.*[0-9].*' required>
+    </div>
+    <div class="mb-3">
+        <label for="attendees_capacity">Capacity:</label>
+        <input type="number" id="attendees_capacity" name="attendees_capacity" placeholder="Please enter numerical values only!" minlength='1' maxlength='6' pattern='.*[0-9].*' required>
+    </div>
+
+    <button class='btn btn-primary' type="submit" value="submit">SAVE</button>
+    <button class='btn btn-secondary' type="reset" value="reset">RESET</button>
+</form>
+
+{% endblock %}

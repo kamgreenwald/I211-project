@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}PartyTime People{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="text-center">
+<img class="img-fluid" src="{{ url_for('static', filename='images/party_index.png') }}" style="width: 1000px;">
+<h1 class="display-4">PartyTime People</h1>
+    </div>
+    <!-- formatted as a table -->
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Email</th>
+            <th>Date of Birth</th>
+            <th>Phone</th>
+            <th>Role</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for person in people %}
+            <tr>
+                <td>{{ person['name'] }}</td>
+                <td>{{ person['address'] }}</td>
+                <td>{{ person['email'] }}</td>
+                <td>{{ person['date_of_birth'] }}</td>
+                <td>{{ person['phone'] }}</td>
+                <td>{{ person['role'] }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+<div class="d-flex justify-content-center">
+    <a href="{{ url_for('add_person')}}" class="btn btn-primary">Add a Person!</a>
+</div>
+{% endblock %}

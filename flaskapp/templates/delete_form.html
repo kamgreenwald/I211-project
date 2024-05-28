@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block title %}PartyTime Events{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <h1>PartyTime Events Delete</h1>
+    <h2 style="color: red;">Confirm Delete?</h2>
+</div>
+<div class="text-center">
+    <h1>{{ event['name'] }}</h1>
+    <img src="{{ url_for('static', filename=event['image_path']) }}" alt="{{ event['name'] }}">
+</div>
+<table class="table" style="margin: 0 auto; width: 50%; text-align: left;">
+    <!-- formatted as a table with a dictionary appearance and aspect -->
+    <tbody>
+        <!--In order for the correct data to appear on the table, need to reference venue['name'], 
+            etc because the venue table is being referenced rather than event-->
+        <tr>
+            <th>Location:</th>
+            <td>{{ venue['name'] }}</td>
+        </tr>
+        <tr>
+            <th>Date:</th>
+            <td>{{ event['date'] }}</td>
+        </tr>
+        <tr>
+            <th>Start Time:</th>
+            <td>{{ event['start_time'] }}</td>
+        </tr>
+        <tr>
+            <th>End Time:</th>
+            <td>{{ event['end_time'] }}</td>
+        </tr>
+        <tr>
+            <th>Maximum Attendees:</th>
+            <td>{{ event['attendees'] }}</td>
+        </tr>
+        <tr>
+            <th>Invitation Text:</th>
+            <td>{{ event['invitation'] }}</td>
+        </tr>
+        <tr>
+            <th>Event Planner Name:</th>
+            <td>{{ planner['name'] }}</td>
+        </tr>
+        <tr>
+            <th>Event Planner Phone Number:</th>
+            <td>{{ planner['phone'] }}</td>
+        </tr>
+        <tr>
+            <th>Event Planner Email:</th>
+            <td>{{ planner['email'] }}</td>
+        </tr>
+        <tr>
+            <th>Event Host Name:</th>
+            <td>{{ host['name'] }}</td>
+        </tr>
+        <tr>
+            <th>Event Host Phone Number:</th>
+            <td>{{ host['phone'] }}</td>
+        </tr>
+        <tr>
+            <th>Event Host Email:</th>
+            <td>{{ host['email'] }}</td>
+        </tr>
+        <tr>
+            <th>PartyTime Rental Items:</th>
+            <td>{{ event['rental_items'] }}</td>
+        </tr>
+        <tr>
+            <th>Event Notes:</th>
+            <td>{{ event['notes'] }}</td>
+        </tr>
+    </tbody>
+</table>
+<!-- LINK TO GO BACK, then a submit button to proceed from get method to post method.-->
+<div class="d-flex justify-content-center">
+    <a href="{{ url_for('show_events')}}" class="btn btn-primary">Return</a>
+    <form method="post" action="{{ url_for('delete_event', event_id=event['event_id']) }}">
+        <button type="submit" class="btn btn-danger m-2">Delete</button>
+    </form>    
+</div>
+{% endblock %}
